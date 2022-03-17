@@ -16,7 +16,7 @@ for competition in competitions_list:
 with open('../Statsbomb/data/matches/'+str(competition_id)+'/'+str(season_id)+'.json',encoding='utf') as f:
     matches = json.load(f)
 
-Team_required ="Atlético Madrid"
+Team_required ="Barcelona"
 
 #Find ID for the match
 matchIDs = []
@@ -26,4 +26,9 @@ for match in matches:
     if (home_team_name==Team_required) or (away_team_name==Team_required):
         matchIDs.append(match['match_id'])
 
-print(matchIDs)
+#print(matchIDs)
+
+with open('../Statsbomb/data/events/'+str(matchIDs[-1])+'.json') as file:
+    match_data = json.load(file)
+
+goals =

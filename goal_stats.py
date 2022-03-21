@@ -30,5 +30,7 @@ for match in matches:
 
 with open('../Statsbomb/data/events/'+str(matchIDs[-1])+'.json') as file:
     match_data = json.load(file)
+    name = matchdata['home_team']['home_team_name']
+    print(name)
 
 goals =

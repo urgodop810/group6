@@ -26,12 +26,17 @@ for match in matches:
     if (home_team_name==Team_required) or (away_team_name==Team_required):
         matchIDs.append(match['match_id'])
 
-goals = []
+goalsScored = []
+goalsConceded = []
 for match in matchIDs:        
     with open('../Statsbomb/data/events/' + str(match) + '.json',encoding='utf') as file:
         events = json.load(file)
         for event in events:
             if event["type"]["name"] == "Shot":
                 if event["shot"]['outcome']['name'] == "Goal":
-                    goals.append(event["id"])
+                    if event["possession_team"]["name"] == "Barcelona" :
+                        goalsScored.append(event["id"])
+                    else :
+                        goalsConceded.append(event["id"])
+                        
     file.close()

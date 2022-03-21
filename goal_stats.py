@@ -1,8 +1,7 @@
+import pandas
 import json
-import pandas as pd
 
 with open('../Statsbomb/data/competitions.json') as file:
-    #print(file)
     competitions_list = json.load(file)
     file.close()
 
@@ -16,10 +15,10 @@ for competition in competitions_list:
 
 with open('../Statsbomb/data/matches/'+str(competition_id)+'/'+str(season_id)+'.json',encoding='utf') as f:
     matches = json.load(f)
+    f.close()
 
 Team_required ="Barcelona"
 
-#Find ID for the match
 matchIDs = []
 for match in matches:
     home_team_name=match['home_team']['home_team_name']
@@ -27,12 +26,17 @@ for match in matches:
     if (home_team_name==Team_required) or (away_team_name==Team_required):
         matchIDs.append(match['match_id'])
 
-#print(matchIDs)
-
-
-with open('../Statsbomb/data/events/'+str(matchIDs[-1])+'.json') as file:
-    match_data = json.load(file)
-
-df = pd.read_json('../Statsbomb/data/events/'+str(matchIDs[-1])+'.json')
-df.info()
-print(df.shot())
+goalsScored = []
+goalsConceded = []
+for match in matchIDs:        
+    with open('../Statsbomb/data/events/' + str(match) + '.json',encoding='utf') as file:
+        events = json.load(file)
+        for event in events:
+            if event["type"]["name"] == "Shot":
+                if event["shot"]['outcome']['name'] == "Goal":
+                    if event["possession_team"]["name"] == "Barcelona" :
+                        goalsScored.append(event["id"])
+                    else :
+                        goalsConceded.append(event["id"])
+                        
+    file.close()

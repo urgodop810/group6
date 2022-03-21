@@ -29,8 +29,9 @@ for match in matches:
 
 #print(matchIDs)
 
-#with open('../Statsbomb/data/events/'+str(matchIDs[-1])+'.json') as file:
-    #match_data = json.load(file)
+
+with open('../Statsbomb/data/events/'+str(matchIDs[-1])+'.json') as file:
+    match_data = json.load(file)
 
 df = pd.read_json('../Statsbomb/data/events/'+str(matchIDs[-1])+'.json')
 df.info()

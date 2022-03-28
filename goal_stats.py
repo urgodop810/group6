@@ -1,4 +1,5 @@
 import pandas
+import numpy
 import json
 
 with open('../Statsbomb/data/competitions.json') as file:
@@ -35,8 +36,7 @@ for match in matchIDs:
             if event["type"]["name"] == "Shot":
                 if event["shot"]['outcome']['name'] == "Goal":
                     if event["possession_team"]["name"] == "Barcelona" :
-                        goalsScored.append(event["id"])
+                        goalsScored.append(event)
                     else :
-                        goalsConceded.append(event["id"])
-                        
+                        goalsConceded.append(event)         
     file.close()

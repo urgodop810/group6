@@ -7,5 +7,5 @@ with open("xTdata.json") as data:
     data.close
 
 def xT(coordinate):
-    return xTval[math.floor(coordinate[0]/10),
-                 math.floor(coordinate[1]/10)]
+    return xTval[math.floor(coordinate[1]/10),
+                 math.floor(coordinate[0]/10)]

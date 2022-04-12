@@ -5,6 +5,9 @@ import json
 with open("xTdata.json") as data:
     xTval = numpy.array(json.load(data))
     data.close
+    
+    
+print(xTval)
 
 def xT(coordinate):
     if coordinate[0] == 120:
